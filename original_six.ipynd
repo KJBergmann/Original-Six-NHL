@@ -1,0 +1,27 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+
+
+def original_six():
+    df = pd.DataFrame(
+        {'Country': ['Canada', 'Canada', 'USA', 'USA', 'USA', 'USA'],
+         'Stanley Cups': [24, 13, 4, 6, 6, 11]},
+        index=['Montreal Canadiens', 'Toronto Maple Leafs', 'NY Rangers',
+               'Boston Bruins', 'Chicago Blackhawks', 'Detroit Red Wings'],
+        columns=['Country', 'Stanley Cups'])
+
+    df.to_csv(index=False)
+
+    # converting the data frame to a list
+    stanley_cups = df.country.tolist()
+    teams = df.index.tolist()
+
+    # formatting the graph for Stanley Cups by team
+    plt.bar(range(len(teams)), stanley_cups)
+    plt.title('Stanley Cup wins in Original Six')
+    plt.ylabel('Number of Stanley Cups won')
+    plt.xticks(range(len(teams)), teams)
+
+    # printing the graph to a pdf file (in terms of won Stanley Cups by team)
+    fname = 'Original Six Stanley Cups.pdf'
+    plt.savefig(fname)
